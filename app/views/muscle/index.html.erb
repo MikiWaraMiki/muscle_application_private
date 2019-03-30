@@ -1,0 +1,64 @@
+<% content_for :title do %>
+    Welcome
+<% end %>
+
+<div class="w-100 index" id="hero">
+        <%= image_tag 'index_toppage.png', id:"top"%>
+        <h1 id="top">Welcome To Muscle Application!!</h1>
+</div>
+<div class="row">
+    <h2>このアプリケーションの特徴</h2>
+</div>
+<div class="row" id="indexmenu">
+    <div class="col-lg-4">
+        <%= image_tag 'index_menu1.png' %>
+        <h2>筋トレをサポート</h2>
+        <p>筋トレに特化したToDoアプリケーションです。</p>
+    </div>
+    <div class="col-lg-4">
+        <%= image_tag 'index_menu2.png'%>
+        <h2>記録の可視化</h2>
+        <p>行ったトレーニングを可視化します。</p>
+    </div>
+    <div class="col-lg-4">
+        <%= image_tag 'index_menu3.png'%>
+        <h2>記録のシェア</h2>
+        <p>他の人の記録を確認してモチベーションを向上させます</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h2>みんなの筋トレ記録</h2>
+        <p>今日のみんなの筋トレ記録</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-xs-12 col-md-12" id="table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>筋トレ日</th>
+                        <th>メニュー</th>
+                        <th>重量</th>
+                        <th>セット数</th>
+                        <th>コメント</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <th>2019/03/26</th>
+                        <th>ベンチプレス</th>
+                        <th>50kg</th>
+                        <th>3セット</th>
+                        <th>途中で潰れてしまった</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="w-100 index">
+</div>

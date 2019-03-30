@@ -1,0 +1,130 @@
+// Place all the styles related to the muscle controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+    padding-top: 60px;
+}
+/* header */
+.fixed-top{
+    background-color: skyblue;
+    .navbar-brand{
+        letter-spacing: 1.1em;
+        font-size: 1.2em;
+        color: white !important;
+    }
+    ul.nav{
+        width:100%;
+        float: right
+    }
+    li.nav-item{
+        margin-right: 20px;
+        font-size: 1.1em
+        &:hover{
+            color:white !important;
+        }
+    }
+}
+
+/* Side Menu */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    .sidebar-heading{
+        padding: 0.875rem 1.25rem;
+        font-size: 1.2rem;
+    }
+    .list-group{
+        width: 15rem;
+    }
+    margin-left: 0;
+}
+  
+/* side-bar */
+.wrapper{
+    display: flex;
+    width: 100%;
+}
+.sidebar{
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: lightblue;
+    color: #fff;
+    transition: all 0.3s;
+    .nav-sidebar{
+        display: inline !important; 
+    }
+    a{
+        color:white;
+        text-decoration: none;
+    }
+}
+
+/* body content */
+#all-body{
+    height: 100%;
+    .sidebar{
+        border: #7386D5 solid 1px;
+    }
+}
+/* hero content*/
+#hero{
+    position: relative;
+    h1{
+        position: absolute !important;
+        top:10px;
+        color:white;
+    }
+}
+
+/*body content*/
+.conteiner-fruid{
+    padding-bottom: 100px;
+}
+.user{
+    height: 50%;
+    width:100%;
+    #title{
+        height: 20% !important;
+        margin-top: 20px;
+    }
+    #table{
+        height: 80% !important;
+    }
+}
+.index{
+    width:100%;
+    padding-right: 0px !important;
+       #top{
+           max-width: 100%;
+           min-width: 100%;
+           position: relative;
+           p{
+               position: absolute;
+           }
+       } 
+}
+#indexmenu{
+    margin:10px;
+    text-align: center;
+    h2{
+        display: block;
+    }
+}
+.page-footer{
+    .container-fluid{
+        background:lightgray;
+    }
+}
+.footer-copyright{
+    background:black;
+    color:white;
+}

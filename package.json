@@ -1,0 +1,11 @@
+{
+  "name": "muscle_application",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^4.0.2",
+    "chart.js": "^2.7.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.2.1"
+  }
+}
