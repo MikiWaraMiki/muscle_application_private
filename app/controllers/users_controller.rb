@@ -11,9 +11,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "ユーザ登録が完了しました。ようこそ！！"
+      log_in @user
       redirect_to @user
     else
-      puts @user.errors.full_messages
       render :new
     end
   end

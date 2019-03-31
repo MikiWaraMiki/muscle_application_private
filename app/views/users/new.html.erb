@@ -1,7 +1,7 @@
 <%= provide(title: "Create New User") %>
 
 <div class="row">
-    <div class="col-md-6 col-sm-3 signup-form">
+    <div class="col-md-4 col-sm-8 my-form">
         <legend>Sign UP!!</legend>
         <%= form_with(model: @user,local:true,url:signup_path) do |f| %>
             <%= render partial:'shared/error_messages',locals:{user:@user}%>

@@ -10,11 +10,7 @@
   </head>
 
   <body>
-    <% if @user %>
-      <%= render partial: "shared/header"%>   
-    <% else %>
-      <%= render partial: "shared/usermenu"%>
-    <% end %>
+    <%= render partial: "shared/header"%>   
     <div class="container-fluid">
       <% flash.each do |message_type, message| %>
         <%= tag.div message,class:"alert alert-#{message_type}" %>

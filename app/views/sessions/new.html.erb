@@ -1,0 +1,21 @@
+<% provide(title: "Login!!") %>
+<div class="row">
+    <div class="col-md-4 col-sm-8 my-form">
+    <legend>Please Login!!</legend>
+    <%= form_with(scope: :session, url:login_path) do |f|%>
+        
+        <%= f.label :email, "メールアドレス"%>
+        <%= f.email_field :email, class:"form-item"%>
+
+        <%= f.label :password, "パスワード"%>
+        <%= f.password_field :password, class:"form-item"%>
+
+        <%= f.submit "Login", class:"btn btn-primary"%>
+    <% end %>
+    <div class="item">
+        <%= link_to "アカウントをお持ちでない方",signup_path, class:"btn-horizontal-border"%>
+    </div>
+    <div class="item">
+        <%= link_to "パスワードをお忘れの方", "#",class:"btn-horizontal-border"%>
+    </div>
+</div>
