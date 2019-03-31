@@ -10,8 +10,15 @@
   </head>
 
   <body>
-    <%= render partial: "shared/header"%>   
+    <% if @user %>
+      <%= render partial: "shared/header"%>   
+    <% else %>
+      <%= render partial: "shared/usermenu"%>
+    <% end %>
     <div class="container-fluid">
+      <% flash.each do |message_type, message| %>
+        <%= tag.div message,class:"alert alert-#{message_type}" %>
+      <% end %>
       <div class="row" id="all-body">
         <div class="col-sm-12 col-md-12 content">
           <%= yield %>
@@ -19,5 +26,6 @@
       </div>
     </div>
     <%= render partial: "shared/footer"%>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

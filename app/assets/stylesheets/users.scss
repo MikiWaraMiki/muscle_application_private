@@ -1,3 +1,33 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin box_sizing {
+    -moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:         border-box;
+  }
+.user-tasks{
+    .row{
+        margin-bottom: 10px;
+        margin-top: 10px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        border-bottom: solid 3px whitesmoke;
+    }
+}
+
+/* forms */
+.signup-form{
+    background: #f8f8ff;
+    margin: 0px auto;
+}
+input, textarea, select, .uneditable-input {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px !important;
+    @include box_sizing;
+  }
+  
+input {
+    height: auto !important;
+}

@@ -1,2 +1,22 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<%= provide(title: "Create New User") %>
+
+<div class="row">
+    <div class="col-md-6 col-sm-3 signup-form">
+        <legend>Sign UP!!</legend>
+        <%= form_with(model: @user,local:true,url:signup_path) do |f| %>
+            <%= render partial:'shared/error_messages',locals:{user:@user}%>
+            <%= f.label :name, "ユーザ名"%>
+            <%= f.text_field :name, class: "form-item"%>
+
+            <%= f.label :email, "メールアドレス"%>
+            <%= f.email_field :email, class: "form-item"%>
+
+            <%= f.label :password, "パスワード"%>
+            <%= f.password_field :password, class:"form-item"%>
+            <%= f.label :password_confirmation, "パスワード(確認用)"%>
+            <%= f.password_field :password_confirmation, class:"form-item"%>
+
+            <%= f.submit "アカウントを作成する", class:"btn btn-primary"%>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<% provide(title: "Muscle Application #{@user.name}")%>
+<%= render partial: "shared/usermenu"%>
+
+<div class="row user-home">
+    <h1>Welcome <%= @user.name%> !!</h1>
+</div>
+<div class="user-tasks">
+    <div class="row weekly-tasks">
+        <div class="col-lg-6 col-md-6">
+            <h2>１週間のタスク</h2>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <button type="button" class="btn btn-primary btn-lg pull-left">登録する</button>
+        </div>
+    </div>
+
+    <div class="row weekly-tasks table">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>予定日</th>
+                    <th>メニュー</th>
+                    <th>重量</th>
+                    <th>セット数</th>
+                    <th>完了</th>
+                </tr>
+            </thead>
+            </tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="record-graph">
+    <h2>今までのトレーニング記録</h2>
+    <canvas id="training-chart">
+    </canvas>
+</div>

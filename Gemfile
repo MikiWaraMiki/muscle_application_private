@@ -10,7 +10,7 @@ gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+#gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Bootstrap4
 gem 'bootstrap', '>= 4.1.1'
+gem 'bootstrap-sass'
 gem 'jquery-rails'
 
 # webpacker
@@ -45,7 +46,13 @@ gem "webpacker"
 # Chart js
 gem 'chart-js-rails'
 
+# SecurePassword
 gem 'bcrypt', '>=3.1.7'
+
+# Error Messages
+gem 'rails-i18n'
+
+gem "rails-controller-testing"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
