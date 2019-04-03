@@ -1,0 +1,38 @@
+<%= provide(title: "Sign Up!!")%>
+<div class="row">
+  <div class="col-md-4 col-sm-8 my-form">
+    <%= form_for(resource, as: resource_name, url: new_user_registration_path) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <legend>ユーザ登録</legend>
+      <div class="field ">
+        <%= f.label :name, "Name"%><br/>
+        <%= f.text_field :name, class:"form-controle"%>
+      </div>
+      <div class="field">
+        <%= f.label :email, "Email(必須)"%><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password,"Password(必須)" %>
+        <% if @minimum_password_length %>
+          <br><em><%= @minimum_password_length %> 文字以上のパスワードを設定してください</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-controle" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "Password確認用(必須)" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-item" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "登録する", class:"btn btn-primary" %>
+      </div>
+
+      <div class="item">
+        <%= link_to "アカウントをお持ちの方",new_user_session_path,class:"btn-horizontal-border"%>
+    </div>
+    <% end %>
+  </div>
+</div>

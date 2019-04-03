@@ -1,0 +1,30 @@
+<% provide(title:"ログイン") %>
+
+<div class="col-md-4 col-sm-8 my-form">
+  <legend>Please Login!!</legend>
+  <em >ログインしてください</em>
+  <%= form_for(resource, as: resource_name, url: new_user_session_path) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field">
+      <%= f.label :email, "Email address" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-item" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "Password" %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class:"form-item" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.label :remember_me,"ログイン情報を記録する" %>
+        <%= f.check_box :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in", class:"btn btn-primary" %>
+    </div>
+  <% end %>
+  <%= render "users/shared/links" %>
+</div>

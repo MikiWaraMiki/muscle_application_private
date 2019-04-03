@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Bootstrap4
 gem 'bootstrap', '>= 4.1.1'
 gem 'bootstrap-sass'
+gem 'sass-rails'
 gem 'jquery-rails'
 
 # webpacker
@@ -52,6 +53,10 @@ gem 'bcrypt', '>=3.1.7'
 # Error Messages
 gem 'rails-i18n'
 
+# Authenticate
+gem "devise"
+gem "devise-i18n"
+#test
 gem "rails-controller-testing"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
