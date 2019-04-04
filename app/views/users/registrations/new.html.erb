@@ -1,8 +1,9 @@
 <%= provide(title: "Sign Up!!")%>
 <div class="row">
   <div class="col-md-4 col-sm-8 my-form">
+    <%= devise_error_messages%>
     <%= form_for(resource, as: resource_name, url: new_user_registration_path) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <render partial:"devise/shared/_error_messages.html.erb">
       <legend>ユーザ登録</legend>
       <div class="field ">
         <%= f.label :name, "Name"%><br/>

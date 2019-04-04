@@ -3,6 +3,8 @@
 class AddDeviseToUsers < ActiveRecord::Migration[5.2]
   #drop_table :users
   create_table :users
+  has_many :todos
+  has_many :posts
   def self.up
     change_table :users do |t|
       ## Database authenticatable

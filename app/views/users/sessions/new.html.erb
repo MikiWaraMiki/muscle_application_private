@@ -1,10 +1,8 @@
 <% provide(title:"ログイン") %>
-
 <div class="col-md-4 col-sm-8 my-form">
   <legend>Please Login!!</legend>
   <em >ログインしてください</em>
   <%= form_for(resource, as: resource_name, url: new_user_session_path) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
     <div class="field">
       <%= f.label :email, "Email address" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-item" %>

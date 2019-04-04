@@ -12,6 +12,11 @@
   <body>
     <%= render partial: "shared/header"%>   
     <div class="container-fluid">
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% elsif alert %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
       <% flash.each do |message_type, message| %>
         <%= tag.div message,class:"alert alert-#{message_type}" %>
       <% end %>

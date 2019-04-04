@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_01_140525) do
+ActiveRecord::Schema.define(version: 2019_04_03_134258) do
+
+  create_table "menus", force: :cascade do |t|
+    t.integer "todos_id"
+    t.string "menu_title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["todos_id"], name: "index_menus_on_todos_id"
+  end
+
+  create_table "to_do_muscles", force: :cascade do |t|
+    t.integer "users_id"
+    t.integer "menus_id"
+    t.integer "wight", default: 1, null: false
+    t.integer "set_count", default: 1, null: false
+    t.datetime "clear_plan"
+    t.boolean "cleared"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menus_id"], name: "index_to_do_muscles_on_menus_id"
+    t.index ["users_id"], name: "index_to_do_muscles_on_users_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
