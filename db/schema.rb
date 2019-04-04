@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_134258) do
+ActiveRecord::Schema.define(version: 2019_04_04_142529) do
 
   create_table "menus", force: :cascade do |t|
     t.integer "todos_id"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2019_04_03_134258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["todos_id"], name: "index_menus_on_todos_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "commnet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "to_do_muscles", force: :cascade do |t|
@@ -31,6 +37,15 @@ ActiveRecord::Schema.define(version: 2019_04_03_134258) do
     t.datetime "updated_at", null: false
     t.index ["menus_id"], name: "index_to_do_muscles_on_menus_id"
     t.index ["users_id"], name: "index_to_do_muscles_on_users_id"
+  end
+
+  create_table "todo_posts", force: :cascade do |t|
+    t.integer "todo_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_todo_posts_on_post_id"
+    t.index ["todo_id"], name: "index_todo_posts_on_todo_id"
   end
 
   create_table "users", force: :cascade do |t|
