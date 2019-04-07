@@ -8,6 +8,11 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  # GET/resourse[pramm[:id]]
+  def show
+    @user = User.find(params[:id])
+  end
+
   # POST /resource/sign_in
   def create
     super

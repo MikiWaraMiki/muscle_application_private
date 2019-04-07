@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'todos/new'
+  get 'todos/create'
+  resources :users, only: [:show]
+  resources :todos
   devise_for :user,  skip: :all
   devise_scope :user do
     get 'login' => 'users/sessions#new', as: :new_user_session
     post 'login' => 'users/sessions#create', as: :user_session
-    delete 'logout' => 'users/sessions#destroy', as: :destroy_user_session
+    get 'logout' => 'users/sessions#destroy', as: :destroy_user_session
     get 'signup' => 'users/registrations#new', as: :new_user_registration
     post 'signup' => 'users/registrations#create', as: :user_registration
     get 'signup/cancel' => 'users/registrations#cancel', as: :cancel_user_registration
@@ -17,7 +21,6 @@ Rails.application.routes.draw do
     patch 'password' => 'users/passwords#update'
     put 'password' => 'users/passwords#update', as: :update_user_password
   end
-  resources :todos
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html  
   root "muscle#index"
 end

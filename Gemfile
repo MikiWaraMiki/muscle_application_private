@@ -39,9 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Bootstrap4
 gem 'bootstrap', '>= 4.1.1'
 gem 'bootstrap-sass'
-gem 'sass-rails'
 gem 'jquery-rails'
-
+gem 'jquery-ui-rails'
 # webpacker
 gem "webpacker"
 # Chart js
@@ -56,8 +55,12 @@ gem 'rails-i18n'
 # Authenticate
 gem "devise"
 gem "devise-i18n"
-#test
+# Controler test
 gem "rails-controller-testing"
+
+# pry
+gem 'pry-rails'
+gem 'pry-doc'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

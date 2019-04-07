@@ -10,4 +10,16 @@ class ActiveSupport::TestCase
   def is_logged_in?
     !session[:user_id].nil?
   end
+
+  def log_in(user)
+    if integration_test?
+      login_as(@user, :scope=>user)
+    else
+      sing_in(user)
+    end
+  end
+
+  def integration_test?
+    defined?(post-via-direct)
+  end
 end

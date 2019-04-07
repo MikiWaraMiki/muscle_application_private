@@ -10,33 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_142529) do
-
-  create_table "menus", force: :cascade do |t|
-    t.integer "todos_id"
-    t.string "menu_title", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["todos_id"], name: "index_menus_on_todos_id"
-  end
+ActiveRecord::Schema.define(version: 2019_04_07_014305) do
 
   create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "todo_post_id"
     t.string "commnet"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "to_do_muscles", force: :cascade do |t|
-    t.integer "users_id"
-    t.integer "menus_id"
-    t.integer "wight", default: 1, null: false
-    t.integer "set_count", default: 1, null: false
-    t.datetime "clear_plan"
-    t.boolean "cleared"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["menus_id"], name: "index_to_do_muscles_on_menus_id"
-    t.index ["users_id"], name: "index_to_do_muscles_on_users_id"
+    t.index ["todo_post_id"], name: "index_posts_on_todo_post_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "todo_posts", force: :cascade do |t|
@@ -46,6 +29,18 @@ ActiveRecord::Schema.define(version: 2019_04_04_142529) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_todo_posts_on_post_id"
     t.index ["todo_id"], name: "index_todo_posts_on_todo_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.integer "users_id"
+    t.integer "weight", default: 1, null: false
+    t.integer "set_count", default: 1, null: false
+    t.datetime "clear_plan"
+    t.boolean "cleared"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.index ["users_id"], name: "index_todos_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|

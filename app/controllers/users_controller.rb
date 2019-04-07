@@ -5,22 +5,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user  = current_user
+    @todo  = Todo.new
   end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      flash[:success] = "ユーザ登録が完了しました。ようこそ！！"
-      log_in @user
-      redirect_to @user
-    else
-      render :new
-    end
-  end
-
+ 
   private
     def user_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation)
+    end
+
+    def todo_params
+      params.require(:user).permit(todos_attributes: [:wight, :count, :complete_date])
     end
 end

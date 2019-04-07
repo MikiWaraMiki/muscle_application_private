@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
     include SessionsHelper
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+    def after_sign_in_path_for(resource)
+        user_url(resource)
+    end
     protected
     def configure_permitted_parameters
         added_attrs = [ :email, :user_name, :password, :password_confirmation ]
