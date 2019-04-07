@@ -6,4 +6,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :todos
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+
 end

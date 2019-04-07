@@ -1,7 +1,8 @@
 function date_format(date_before_format){
     var year  = date_before_format.getFullYear();
     var month = date_before_format.getMonth()+1;
-    var day   = date_before_format.getDate();
+    var day   = date_before_format.getDate
+    ();
     var format_str = year + "年" + month + "月" + day + "日";
     return format_str
 }

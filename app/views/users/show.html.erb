@@ -21,7 +21,7 @@
     </div>
     <div class="row weekly-tasks">
         <div class="col-lg-12 col-md-12">
-            <h2>１週間のタスク</h2>
+            <h2>未完了のトレーニング</h2>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% @user.todos.each do | todo |  %>
+                <% @user_todo_list.each do | todo |  %>
                     <tr>
                         <th><%= format_date(todo.clear_plan) %></th>
                         <th><%= todo.title%></th>
@@ -53,7 +53,7 @@
 </div>
 
 <div class="record-graph">
-    <h2>今までのトレーニング記録</h2>
-    <canvas id="training-chart">
+    <h2>完了済みトレーニング内訳</h2>
+    <canvas id="chart">
     </canvas>
 </div>

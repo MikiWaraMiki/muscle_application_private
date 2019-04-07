@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user  = current_user
     @todo  = Todo.new
+    @user_todo_list = @user.todos
   end
  
   private

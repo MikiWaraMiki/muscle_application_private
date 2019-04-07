@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'todos/create'
   resources :users, only: [:show]
   resources :todos
+  get '/show_graph' => 'todos#show_graph', as: :show_graph
   devise_for :user,  skip: :all
   devise_scope :user do
     get 'login' => 'users/sessions#new', as: :new_user_session

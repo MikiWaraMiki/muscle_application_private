@@ -14,6 +14,11 @@ class Todo < ApplicationRecord
         presence: true
     validate :date_valid?
 
+    def gruopby_count_by_title
+        todo_complete = self.find_by(cleared: true)
+        todo_complete.group('todos.title').count
+    end
+
     private
     def date_valid?
         now = Time.now.in_time_zone
