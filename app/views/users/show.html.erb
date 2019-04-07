@@ -6,6 +6,7 @@
     <div id="dialog-form" title="Create New Todo">
         <p class="validateTips">筋トレToDoを登録しましょう</p>
         <%= form_for @todo ,remote: true do |f| %>
+            <%= render 'shared/form_error_messages'%>
             <%= f.label :title, "トレーニング名"%>
             <%= f.text_field :title, class:"text ui-widget-content ui-corner-all" %>
             <%= f.label :weight, "重量"%>
@@ -39,7 +40,7 @@
             <tbody>
                 <% @user.todos.each do | todo |  %>
                     <tr>
-                        <th><%= todo.clear_plan %></th>
+                        <th><%= format_date(todo.clear_plan) %></th>
                         <th><%= todo.title%></th>
                         <th><%= todo.weight%></th>
                         <th><%= todo.set_count%></th>

@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      todo:
+        title: タイトル
+        clear_plan: 予定日
+        created_at: 作成日
+        weight: 重さ
+        set_count: セット数
+    models:
+      todo: ToDo

@@ -35,6 +35,10 @@ $(function(){
                 Rails.fire(form[0],'submit');
             },
             "閉じる":function(){
+                $("#ui-button").attr("disabled", false);
+                $("#errors").empty();
+                $('#form-error').hide();
+                $('#form-error').addClass('hide');
                 dialog.dialog("close");
             }
         },

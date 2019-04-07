@@ -8,7 +8,7 @@ class TodosController < ApplicationController
       render json: {data:todo}, status:200
     end
   rescue => error
-      render json: {message: error}, status:500
+      render json: {errors:todo.errors.full_messages},status:422
   end
 
   private

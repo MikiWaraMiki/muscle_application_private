@@ -12,24 +12,7 @@
   <body>
     <%= render partial: "shared/header"%>   
     <div class="container-fluid">
-      <% if notice %>
-        <div class="alert alert-info alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">close</span>
-          </button>
-          <%= notice %>
-        </div>
-      <% end %>
-      <% if alert %>
-          <div class="alert alert-danger alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">close</span>
-          </button>
-          <%= alert %>
-        </div>
-      <% end %>
+      <%= render partial:'shared/error_messages'%>
       <div class="row" id="all-body">
         <div class="col-sm-12 col-md-12 content">
           <%= yield %>

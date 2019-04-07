@@ -1,15 +1,18 @@
-
-<% if user.errors.any?%>
-    <div id="error-messages">
-        <div class="error_explanation">
-            <div class="alert alert-danger">
-                入力内容が誤っています.
-            </div>
-            <ul>
-            <% user.errors.full_messages.each do | msg |%>
-                <li><%= msg%></li>
-            <% end %>
-            </ul>
-        </div>
-    </div>
-<%end%>
+<% if notice %>
+  <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">close</span>
+    </button>
+    <%= notice %>
+  </div>
+<% end %>
+<% if alert %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">close</span>
+  </button>
+  <%= alert %>
+  </div>
+<% end %>
