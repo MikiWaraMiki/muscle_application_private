@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :todos
   get '/show_graph' => 'todos#show_graph', as: :show_graph
   patch '/todos/complete/:id'  => 'todos#complete', as: :complete_todo
-  get '/user/:id/todos' => 'users#show_todo_list', as: :show_user_todo
+  get '/user/:id/timelines' => 'users#show_timeline', as: :show_user_todo
   devise_for :user,  skip: :all
   devise_scope :user do
     get 'login' => 'users/sessions#new', as: :new_user_session
