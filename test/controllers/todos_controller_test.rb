@@ -27,8 +27,11 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-
-
   end
 
+  test 'complete todo should be change todo status that is complete' do
+    login_as(@user, scope: :user)
+    patch complete_todo_path(@todo), xhr:true
+    assert_response :success
+  end
 end

@@ -11,11 +11,25 @@ class TodosController < ApplicationController
       render json: {errors:todo.errors.full_messages},status:422
   end
 
+  def complete
+    todo = Todo.find(params[:id])
+    todo.cleared = true
+    if todo.save!
+      datas = Todo.where(users_id: current_user.id, cleared:true).group('title').count
+      flash[:success] = "更新が完了しました"
+      render json: {datas:datas,flash: flash[:success]}, status: 200
+    end
+  rescue => error
+    puts error
+    flash[:error] = "更新に失敗しました。"
+    render json:{errors:todo.errors.full_messages, flash:flash[:error]}, status: 500
+  end
+
   def show_graph
     @todos = current_user.todos
     render json: {
       #datas: @todos.gruopby_count_by_title
-      datas: @todos.where(cleared: true).group('title').count   
+      datas: @todos.where(cleared: true).group('title').count
     },status:200
 #    respond_to do |format|
 #      format.html

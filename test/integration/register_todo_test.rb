@@ -39,7 +39,24 @@ class RegisterTodoTest < ActionDispatch::IntegrationTest
         }
       }
     end
+  end
 
+  test 'comleted task should be changed cleared status is true ' do
+    get user_url(@user)
+    post todos_url,xhr:true,  params:{
+      todo:{
+        title: @todo.title,
+        weight: @todo.weight,
+        set_count: @todo.set_count,
+        clear_plan: @todo.clear_plan
+      }
+    }
+    assert_response :success
+    patch complete_todo_path(@todo), xhr: true
+    assert_response :success
+    json = JSON.parse(response.body)['flash']
+    assert json, "更新が完了しました"
+    assert_select 'div.alert', "更新が完了しました"
   end
 
 end

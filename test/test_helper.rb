@@ -16,7 +16,7 @@ class ActiveSupport::TestCase
     if integration_test?
       login_as(@user, :scope=>user)
     else
-      sing_in(user)
+      sign_in(user)
     end
   end
 

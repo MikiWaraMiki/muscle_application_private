@@ -7,7 +7,7 @@ function date_format(date_before_format){
     return format_str
 }
 function set_ajax(){
-    var form = $(document);
+    var form = $("#new_todo");
     form.on("ajax:before", function(event){
         $("#ui-button").attr("disabled", true);
     });
@@ -20,7 +20,7 @@ function set_ajax(){
         //Table 実装
         var append_html = "<tr><th>"+ formatted_date + "</th><th>"
         + data.title + "</th><th>"+data.weight+"</th><th>"+data.set_count 
-        + "</th><th>"+'<a href="/todos/'+ data.id +'" class="btn btn-sm btn-primary" data-method="delete" data-remote="true">完了' +'</a></th></tr>';
+        + "</th><th>"+'<a href="/todos/complete/'+ data.id +'" class="btn btn-sm btn-primary" id="complete-link" data-confirm="完了済みとして登録しますか" rel=nofollow data-method="patch" data-remote="true">完了' +'</a></th></tr>';
         $("#todo-list").append(append_html);
         $("#ui-button").attr("disabled", false);
         $("#errors").empty();
@@ -39,7 +39,7 @@ function set_ajax(){
     });
 
     form.on("ajax:complete", function(event){
-        
+        $("#ui-button").attr("disabled", false);
     });
 
 }

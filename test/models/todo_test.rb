@@ -37,4 +37,9 @@ class TodoTest < ActiveSupport::TestCase
     @todo.clear_plan = "2019-03-12"
     assert_not @todo.valid?
   end
+
+  test "complete requested todo shoule be completed " do
+    @todo.cleared = true
+    assert @todo.valid?
+  end
 end

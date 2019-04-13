@@ -1,3 +1,4 @@
+var myChart = "";
 function show_graph(){
     $.ajax({
         type: 'GET',
@@ -11,7 +12,7 @@ function show_graph(){
                 var o = Math.round, r = Math.random, s = 255;
                 color.push('rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')');
             }
-            var myChart = new Chart(context, {
+            myChart = new Chart(context, {
                 type: 'pie',
                 data:{
                     labels: Object.keys(data.datas),
@@ -32,4 +33,5 @@ function show_graph(){
 
     })
 }
+
 $(document).on('turbolinks:load', show_graph);

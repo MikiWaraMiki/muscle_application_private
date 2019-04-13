@@ -20,12 +20,8 @@
         <%end%>
     </div>
     <div class="row weekly-tasks">
-        <div class="col-lg-12 col-md-12">
-            <h2>未完了のトレーニング</h2>
-        </div>
-    </div>
-
-    <div class="row weekly-tasks table">
+        <h2>未完了タスク一覧</h2>
+        <div class="row weekly-tasks table">
         <button type="button" class="btn btn-primary btn-sm pull-left" id="create-todo">登録する</button>
         <table class="table table-striped" id="todo-list">
             <thead>
@@ -44,11 +40,12 @@
                         <th><%= todo.title%></th>
                         <th><%= todo.weight%></th>
                         <th><%= todo.set_count%></th>
-                        <th><%= link_to "完了", todo_path, class:"btn btn-sm btn-primary", method: :delete, remote: true%></th>
+                        <th><%= link_to "完了", complete_todo_path(todo), class:"btn btn-sm btn-primary", id:"complete-link", method: :patch, remote: true,data:{confirm: "完了ずみとして登録しますか?"}%></th>
                     </tr>
                 <% end%>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 

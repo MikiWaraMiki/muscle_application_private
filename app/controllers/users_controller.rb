@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def show
     @user  = current_user
     @todo  = Todo.new
-    @user_todo_list = @user.todos
+    #完了済みToDoのみを取得
+    @user_todo_list = @user.todos.where(cleared: false);
   end
  
   private
