@@ -10,6 +10,15 @@ class UsersController < ApplicationController
     #完了済みToDoのみを取得
     @user_todo_list = @user.todos.where(cleared: false);
   end
+
+  def show_timeline
+    @user      = current_user
+    #自分のタイムライン
+    @posts     = @user.posts.paginate(per_page:4, page: params[:user_timeline_page])
+    #全ユーザタイムライン
+    @all_posts = Post.all.paginate(per_page:4, page: params[:all_user_timeline_page])
+    render template: "users/show_timeline"
+  end
  
   private
     def user_params

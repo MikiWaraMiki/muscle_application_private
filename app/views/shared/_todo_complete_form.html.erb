@@ -1,0 +1,32 @@
+<!-- Modal Timeline Form -->
+<div class="modal fade" id="modal-timeline-form<%=todo.id%>" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <div class="modal-dialog" role="document" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="label1">タスクをShare!!</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <%= form_with model: todo, url: complete_todo_path(todo), id:"todocomplete-form" do |f| %>
+                    <%= f.label :title, "タイトル"%>
+                    <%= f.text_field :title, class:"ui-widget-content ui-corner-all", disabled: true%>
+                    <%= f.label :clear_plan,"完了予定日" %>
+                    <%= f.text_field :clear_plan, value: format_date(todo.clear_plan),class:"date-picker ui-widget-content ui-corner-all", disabled: true%>
+                    <%= f.label :clear_date, "完了日" %>
+                    <%= f.text_field :clear_date,class:"date-picker ui-widget-content ui-corner-all"%>
+                    <%= f.label :posted, "Shereしますか?"%>
+                    <%= f.check_box :posted, {}, "true", "false"%>
+                    <%= f.fields_for :post,  Post.new do |pf| %>
+                        <%=pf.label :comment, "コメント"%>
+                        <%=pf.text_field :comment, class:"ui-widget-content ui-corner-all"%>
+                    <% end%>
+                    <%= f.submit "完了!!", class:"btn btn-info btn-xs"%>
+                <% end%>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

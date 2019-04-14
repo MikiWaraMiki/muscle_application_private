@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+
   def new
   end
 
@@ -12,8 +13,14 @@ class TodosController < ApplicationController
   end
 
   def complete
-    todo = Todo.find(params[:id])
-    todo.cleared = true
+    todo            = Todo.find(params[:id])
+    receive_params  = todo_complete_params
+    puts receive_params
+    todo.cleared    = true
+    todo.clear_date = receive_params[:clear_date]
+    todo.posted     = receive_params[:posted]
+   
+    todo.build_post(comment: receive_params[:post_attributes].to_h['comment'],users_id: current_user.id)
     if todo.save!
       datas = Todo.where(users_id: current_user.id, cleared:true).group('title').count
       flash[:success] = "更新が完了しました"
@@ -44,5 +51,9 @@ class TodosController < ApplicationController
   private
   def todo_params
     params.require(:todo).permit(:weight,:set_count,:clear_plan,:title)
+  end
+
+  def todo_complete_params
+    params.require(:todo).permit(:title,:clear_plan,:clear_date,:posted, post_attributes:[:comment])
   end
 end

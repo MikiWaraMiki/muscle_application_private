@@ -1,28 +1,14 @@
 <% provide(title: "Muscle Application #{@user.name}")%>
-<div class="row user-home">
+<div class="col-md-12 col-sm-12 user-home">
     <h1>Welcome <%= @user.name%> !!</h1>
 </div>
-<div class="user-tasks">
-    <div id="dialog-form" title="Create New Todo">
-        <p class="validateTips">筋トレToDoを登録しましょう</p>
-        <%= form_for @todo ,remote: true do |f| %>
-            <%= render 'shared/form_error_messages'%>
-            <%= f.label :title, "トレーニング名"%>
-            <%= f.text_field :title, class:"text ui-widget-content ui-corner-all" %>
-            <%= f.label :weight, "重量"%>
-            <%= f.number_field :weight, min:1, max:200, step:1, class:"text ui-widget-content ui-corner-all"%>
-            <%= f.label :set_count, "セット数"%>
-            <%= f.number_field :set_count, min:1, max:100, step:1, class:"text ui-widget-content ui-corner-all"%>
-            <%= f.label :clear_plan, "完了予定日"%>
-            <%= f.date_field :clear_plan,class:"date-picker ui-widget-content ui-corner-all"%>
-            <!-- Enter Button Submit -->
-            <%= f.submit "", tabindex: "-1", style: "position:absolute; top:-1000px;"%>
-        <%end%>
-    </div>
-    <div class="row weekly-tasks">
+
+<div class="col-md-12 col-sm-12 user-tasks">
+    <div class="col-md-12 col-sm-12 weekly-tasks">
         <h2>未完了タスク一覧</h2>
         <div class="row weekly-tasks table">
-        <button type="button" class="btn btn-primary btn-sm pull-left" id="create-todo">登録する</button>
+        <button type="button" class="btn btn-primary btn-sm pull-left" data-toggle="modal" data-target="#create-todo-form">登録する</button>
+        <%= render partial:'shared/create_todo_form', local:{todo: @todo}%>
         <table class="table table-striped" id="todo-list">
             <thead>
                 <tr>
@@ -35,21 +21,24 @@
             </thead>
             <tbody>
                 <% @user_todo_list.each do | todo |  %>
-                    <tr>
+                    <tr class="todo-column-#{todo.id}">
                         <th><%= format_date(todo.clear_plan) %></th>
                         <th><%= todo.title%></th>
                         <th><%= todo.weight%></th>
                         <th><%= todo.set_count%></th>
-                        <th><%= link_to "完了", complete_todo_path(todo), class:"btn btn-sm btn-primary", id:"complete-link", method: :patch, remote: true,data:{confirm: "完了ずみとして登録しますか?"}%></th>
+                        <!--<th><%= link_to "完了", complete_todo_path(todo), class:"btn btn-sm btn-primary", id:"complete-link", method: :patch, remote: true,data:{confirm: "完了ずみとして登録しますか?"}%></th>-->
+                        <th><button type="button" class="btn btn-sm btn-primary" id="complete-button" data-toggle="modal" data-target="#modal-timeline-form<%=todo.id%>">完了</button>
                     </tr>
+                    <!-- Modal Form-->
                 <% end%>
+                 <%= render partial:'shared/todo_complete_form', collection:@user_todo_list, as: :todo%>
             </tbody>
         </table>
         </div>
     </div>
 </div>
 
-<div class="record-graph">
+<div class="col-md-12 col-sm-12 record-graph">
     <h2>完了済みトレーニング内訳</h2>
     <canvas id="chart">
     </canvas>

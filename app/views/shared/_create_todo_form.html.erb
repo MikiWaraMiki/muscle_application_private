@@ -1,0 +1,30 @@
+<!-- Modal Timeline Form -->
+<div class="modal fade" id="create-todo-form" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <div class="modal-dialog" role="document" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="label1">タスクをShare!!</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <%= form_with model:@todo ,url: todos_path(@todo), id:'new-todo' do |f| %>
+                <%= render 'shared/form_error_messages'%>
+                <%= f.label :title, "トレーニング名"%>
+                <%= f.text_field :title, class:"text ui-widget-content ui-corner-all" %>
+                <%= f.label :weight, "重量"%>
+                <%= f.number_field :weight, min:1, max:200, step:1, class:"text ui-widget-content ui-corner-all"%>
+                <%= f.label :set_count, "セット数"%>
+                <%= f.number_field :set_count, min:1, max:100, step:1, class:"text ui-widget-content ui-corner-all"%>
+                <%= f.label :clear_plan, "完了予定日"%>
+                <%= f.text_field :clear_plan,class:"date-picker ui-widget-content ui-corner-all",id: "datepicker-create"%>
+                <!-- Enter Button Submit -->
+                 <%= f.submit "登録", class:"btn btn-info btn-xs"%>
+            <%end%>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

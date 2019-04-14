@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   get 'todos/create'
   resources :users, only: [:show]
   resources :todos
+  resources :posts, only:[:show,:create]
   get '/show_graph' => 'todos#show_graph', as: :show_graph
   patch '/todos/complete/:id'  => 'todos#complete', as: :complete_todo
-  get '/user/:id/timelines' => 'users#show_timeline', as: :show_user_todo
+  get '/users/:id/timelines/' => 'users#show_timeline', as: :show_timeline
   devise_for :user,  skip: :all
   devise_scope :user do
     get 'login' => 'users/sessions#new', as: :new_user_session

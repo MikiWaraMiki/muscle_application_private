@@ -28,7 +28,7 @@ function show_graph(){
                     maintainAsepectRatio: false,
                 }
             })
-            console.log(myChart.data.backgroundColor);
+            console.log(myChart.data.datasets.backgroundColor);
         }
 
     })

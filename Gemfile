@@ -52,6 +52,10 @@ gem 'bcrypt', '>=3.1.7'
 # Error Messages
 gem 'rails-i18n'
 
+# Pagination
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 # Authenticate
 gem "devise"
 gem "devise-i18n"

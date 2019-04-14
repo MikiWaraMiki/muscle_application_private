@@ -10,36 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_014218) do
+ActiveRecord::Schema.define(version: 2019_04_13_124638) do
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "todo_post_id"
-    t.string "commnet"
+    t.integer "users_id"
+    t.integer "todos_id"
+    t.string "comment", default: "タスクを完了しました!"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["todo_post_id"], name: "index_posts_on_todo_post_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["todos_id"], name: "index_posts_on_todos_id"
+    t.index ["users_id"], name: "index_posts_on_users_id"
   end
 
-  create_table "todo_posts", force: :cascade do |t|
-    t.integer "todo_id"
-    t.integer "post_id"
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_todo_posts_on_post_id"
-    t.index ["todo_id"], name: "index_todo_posts_on_todo_id"
+    t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "todos", force: :cascade do |t|
     t.integer "users_id"
     t.integer "weight", default: 1, null: false
     t.integer "set_count", default: 1, null: false
+    t.string "title", null: false
     t.datetime "clear_plan"
-    t.boolean "cleared"
+    t.boolean "cleared", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
+    t.datetime "clear_date"
+    t.boolean "posted", default: false
     t.index ["users_id"], name: "index_todos_on_users_id"
   end
 

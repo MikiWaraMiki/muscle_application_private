@@ -1,6 +1,8 @@
 require 'date'
 class Todo < ApplicationRecord
     belongs_to :user, optional: true
+    has_one :post, foreign_key: "todos_id"
+    accepts_nested_attributes_for :post
     validates :title,
         presence: true,
         length: {minimum:1, maximum:100, message:"文字数は1~100に納めてください"},

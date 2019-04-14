@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag "timeline/timeline", :media => "all" %>
+<div class="qa-message-list" id="wallmessages">
+    <% posts.each do |post| %>
+    <div class="message-item" id="m16">
+        <div class="message-inner">
+            <div class="message-head clearfix">
+                <div class="avatar pull-left">
+                    <%= link_to user_path do %>
+                        <%= image_tag('avatar.png')%>
+                    <% end%>
+                </div>
+                <div class="user-detail">
+                    <h5 class="handle"><%= post.user.name%> </h5>
+                    <div class="post-meta">
+                        <div class="asker-meta">
+                            <span class="qa-message-what"></span>
+                            <span class="qa-message-when">
+                                <span class="qa-message-when-data"><%= format_date(post.created_at)%></span>
+                            </span>
+                            <span class="qa-message-who">
+                                <span class="qa-message-who-pad">by <%= post.user.name%> </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="qa-message-content">
+                <%= post.comment%>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
