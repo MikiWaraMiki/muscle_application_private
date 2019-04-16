@@ -5,14 +5,33 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
- # def new
- #    super
- # end
+  def new
+    @all_posts = Post.all.limit(2).order('created_at DESC')
+    super
+  end
 
-  # POST /resource
-#  def create
-#  end
+   # POST /resource
+   def create
+    build_resource(sign_up_params)
 
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      redirect_to action: 'new', flash:{error:"ユーザ登録に失敗しました"}
+    end
+  end
   # GET /resource/edit
   # def edit
   #   super
@@ -55,7 +74,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  private
+  def after_inactive_sign_up_path_for(resource)
+     root_path
+  end
+
+
 end

@@ -1,38 +1,49 @@
-<%= provide(title: "Sign Up!!")%>
-  <div class="col-md-4 col-sm-8 my-form">
-    <%= devise_error_messages%>
-    <%= form_for(resource, as: resource_name, url: new_user_registration_path) do |f| %>
-      <render partial:"devise/shared/_error_messages.html.erb">
-      <legend>ユーザ登録</legend>
-      <div class="field ">
-        <%= f.label :name, "Name"%><br/>
-        <%= f.text_field :name, class:"form-controle"%>
-      </div>
-      <div class="field">
-        <%= f.label :email, "Email(必須)"%><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-      </div>
+<% content_for :title do %>
+    Welcome
+<% end %>
 
-      <div class="field">
-        <%= f.label :password,"Password(必須)" %>
-        <% if @minimum_password_length %>
-          <br><em><%= @minimum_password_length %> 文字以上のパスワードを設定してください</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-controle" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation, "Password確認用(必須)" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-item" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "登録する", class:"btn btn-primary" %>
-      </div>
-
-      <div class="item">
-        <%= link_to "アカウントをお持ちの方",new_user_session_path,class:"btn-horizontal-border"%>
+<div class="w-100 row " id="hero" style="background-image:url(/assets/hero.jpg)">
+        <div class="title col-xs-12 col-md-6" >
+            <h1 id="top">Welcome To Muscle Application!!</h1>
+            <p>筋トレに特化したタスク管理と筋トレ記録のシェアに特化したアプリケーションです</p>
+            <p>本日も多くの人が筋トレをシェアしています</p>
+            <div id ="timeline">
+        <%= render 'shared/timelines', posts: @all_posts%>
+            </div>
+        </div>
+        <div class="signup-form col-xs-12 col-md-5">
+            <h1>Sign UP!!</h1>
+            <p>筋トレ管理をはじめましょう</p>
+            <%= form_for resource ,as:resource_name, url:new_user_registration_path, class:"hero-form" do |f|%>
+                <%= render partial:"devise/shared/error_messages" %>
+                <%= f.label :name,"名前"%>
+                <%= f.text_field :name, class:"form-controle"%>
+                <%= f.label :email, "メールアドレス"%>
+                <%= f.email_field :email, class:"form-controle"%>
+                <%= f.label :password, "パスワード"%>
+                <%= f.password_field :password, class:"form-controle"%>
+                <%= f.submit "登録", class:"btn btn-primary btn-md"%>
+            <%end%>
+            <%= link_to "すでに会員のかた", new_user_session_path, class:"btn btn-primary btn-md"%>
+        </div>
+</div>
+<div class="row app-introduce">
+    <h1 class="title col-md-12 col-xs-12">アプリケーションの特徴</h1>
+    <div class="row" id="indexmenu">
+        <div class="col-lg-4">
+        <%= image_tag 'index_menu1.png' %>
+            <h2>筋トレをサポート</h2>
+            <p>筋トレに特化したToDoアプリケーションです。</p>
+        </div>
+        <div class="col-lg-4">
+        <%= image_tag 'index_menu2.png'%>
+            <h2>記録の可視化</h2>
+            <p>行ったトレーニングを可視化します。</p>
+        </div>
+        <div class="col-lg-4">
+        <%= image_tag 'index_menu3.png'%>
+            <h2>記録のシェア</h2>
+            <p>他の人の記録を確認してモチベーションを向上させます</p>
+        </div>
     </div>
-    <% end %>
-  </div>
-
+</div>

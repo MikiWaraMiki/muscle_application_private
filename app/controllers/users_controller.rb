@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   def show_timeline
     @user      = current_user
     #自分のタイムライン
-    @posts     = @user.posts.paginate(per_page:4, page: params[:user_timeline_page])
+    @posts     = @user.posts.order(:created_at).paginate(per_page:4, page: params[:user_timeline_page])
     #全ユーザタイムライン
-    @all_posts = Post.all.paginate(per_page:4, page: params[:all_user_timeline_page])
+    @all_posts = Post.all.order(:created_at).paginate(per_page:4, page: params[:all_user_timeline_page])
     render template: "users/show_timeline"
   end
  

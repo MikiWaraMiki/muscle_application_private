@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/users/:id/timelines/' => 'users#show_timeline', as: :show_timeline
   devise_for :user,  skip: :all
   devise_scope :user do
+    root :to => 'users/registrations#new'
     get 'login' => 'users/sessions#new', as: :new_user_session
     post 'login' => 'users/sessions#create', as: :user_session
     get 'logout' => 'users/sessions#destroy', as: :destroy_user_session
@@ -26,5 +27,5 @@ Rails.application.routes.draw do
     put 'password' => 'users/passwords#update', as: :update_user_password
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html  
-  root "muscle#index"
+  
 end

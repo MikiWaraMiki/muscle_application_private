@@ -5,12 +5,13 @@
         <div class="message-inner">
             <div class="message-head clearfix">
                 <div class="avatar pull-left">
-                    <%= link_to user_path do %>
+                    <%= link_to user_path(post.user) do %>
                         <%= image_tag('avatar.png')%>
                     <% end%>
                 </div>
                 <div class="user-detail">
                     <h5 class="handle"><%= post.user.name%> </h5>
+                    <p> <%= post.comment%></p>
                     <div class="post-meta">
                         <div class="asker-meta">
                             <span class="qa-message-what"></span>
@@ -25,7 +26,9 @@
                 </div>
             </div>
             <div class="qa-message-content">
-                <%= post.comment%>
+                メニュー:<%= post.todo.title%>
+                ウェイト:<%= post.todo.weight%>
+                セット数:<%= post.todo.set_count%>
             </div>
         </div>
     </div>

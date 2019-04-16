@@ -11,14 +11,12 @@
 
   <body>
     <%= render partial: "shared/header"%>   
-    <div class="container-fluid">
-      <%= render partial:'shared/error_messages'%>
       <div class="row content" id="all-body">
+          <%= render partial:'shared/error_messages'%>
         <!--div class="col-sm-12 col-md-12 content"-->
           <%= yield %>
         <!--/div -->
       </div>
-    </div>
     <%= render partial: "shared/footer"%>
     <%= debug(params) if Rails.env.development? %>
   </body>

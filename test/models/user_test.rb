@@ -5,7 +5,8 @@ class UserTest < ActiveSupport::TestCase
   Userモデルの単体テストクラス
 =end
   def setup
-    @user = User.new(name:"TEST", email:"test@test.com", password:"password", password_confirmation:"password")
+    @user         = user(:testuser)
+    @user_followd = user(:testuser2) 
   end
 
   test "valid data" do
