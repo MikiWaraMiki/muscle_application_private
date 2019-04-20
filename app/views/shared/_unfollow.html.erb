@@ -1,0 +1,4 @@
+<%= form_with model: current_user.following_relationships.build(following_id: post_user.id), url: unfollowing_path,id: "relationship-form",method: :delete  do |f|%>
+    <%= f.hidden_field :following_id %>
+    <%= f.submit "Unfollow", class:"btn btn-xs btn-primary button-#{post_user.id}"%>
+<% end %>

@@ -19,6 +19,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+
+  # タイムラインからフォローする際の処理
+  # タイムラインを投稿しているユーザが自分自身の場合trueを返す。それ以外の場合はfalseを返す
+  def following_user_is_own?(other_user)
+    self.id == other_user.id
+  end
+
   #ユーザをフォローしているか?
   def following?(other_user)
     following_relationships.find_by(following_id: other_user.id)

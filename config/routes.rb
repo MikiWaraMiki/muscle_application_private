@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/show_graph' => 'todos#show_graph', as: :show_graph
   patch '/todos/complete/:id'  => 'todos#complete', as: :complete_todo
   get '/users/:id/timelines/' => 'users#show_timeline', as: :show_timeline
+  post '/following/' => 'relationships#create', as: :following
+  delete '/unfollowing/' => 'relationships#destroy', as: :unfollowing
   devise_for :user,  skip: :all
   devise_scope :user do
     root :to => 'users/registrations#new'

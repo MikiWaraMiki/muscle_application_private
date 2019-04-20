@@ -21,6 +21,15 @@
                             <span class="qa-message-who">
                                 <span class="qa-message-who-pad">by <%= post.user.name%> </span>
                             </span>
+                            <% if user_signed_in? && @user.id != post.user.id %>
+                                <div class="relationship-form-<%= post.user.id%>">
+                                <% if !@user.following?(post.user)%>
+                                    <%= render partial:"shared/follow", locals:{post_user: post.user}%>
+                                <% else %>
+                                    <%= render partial:"shared/unfollow", locals:{post_user:post.user}%>
+                                <% end %>
+                                </div>
+                            <%end%>
                         </div>
                     </div>
                 </div>

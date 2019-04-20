@@ -1,0 +1,4 @@
+<%= form_with model: current_user.following_relationships.build(following_id: post_user.id), url: following_path,id:"relationship-form" do |f|%>
+    <%= f.hidden_field :following_id %>
+    <%= f.submit "Follow", class:"btn btn-xs btn-primary button-#{post_user.id}"%>
+<% end %>

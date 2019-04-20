@@ -18,6 +18,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require Chart.min
-//= require graph.js
+//= require show_graph.js
 //= require complete.js
 //= require_tree .
