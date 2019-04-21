@@ -1,0 +1,19 @@
+current directory: /var/www/rails/muscle_application_rails_exsample/vendor/config/ruby/2.6.0/gems/bcrypt-3.1.12/ext/mri
+/home/wara/.rbenv/versions/2.6.2/bin/ruby -I /home/wara/.rbenv/versions/2.6.2/lib/ruby/2.6.0 -r ./siteconf20190420-4355-1prvoad.rb extconf.rb
+creating Makefile
+
+current directory: /var/www/rails/muscle_application_rails_exsample/vendor/config/ruby/2.6.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" clean
+
+current directory: /var/www/rails/muscle_application_rails_exsample/vendor/config/ruby/2.6.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR="
+compiling bcrypt_ext.c
+compiling crypt.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+linking shared-object bcrypt_ext.so
+
+current directory: /var/www/rails/muscle_application_rails_exsample/vendor/config/ruby/2.6.0/gems/bcrypt-3.1.12/ext/mri
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20190420-4355-j2pdcd

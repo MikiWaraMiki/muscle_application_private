@@ -22,6 +22,10 @@ test:
 
 production:
   <<: *default
+  database: muscle_production
   adapter: postgresql
   encoding: unicode
   pool: 5
+  username: <%= ENV['RAILS_DATABASE_USERNAME'] %>
+  password: <%= ENV['RAILS_DATABASE_PASSWORD'] %>
+  host: <%= ENV['RAILS_DATABASE_HOST'] %>
