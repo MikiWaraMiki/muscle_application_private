@@ -1,17 +1,14 @@
-<% content_for :title do %>
-    Welcome
-<% end %>
+<% provide(title: "Muscle Application") %>
 
-<div class="w-100 row " id="hero" style="background-image:url(/assets/hero.jpg)">
-        <div class="title col-xs-12 col-md-6" >
+<div class="jumbotron jumbotron-fruid" id="hero" style="background-image:url(/assets/hero.jpg)">
+    <div class="row">
+        <div class="title col-xs-12 col-md-6">
             <h1 id="top">Welcome To Muscle Application!!</h1>
             <p>筋トレに特化したタスク管理と筋トレ記録のシェアに特化したアプリケーションです</p>
             <p>本日も多くの人が筋トレをシェアしています</p>
-            <div id ="timeline">
-        <%= render 'shared/timelines', posts: @all_posts%>
-            </div>
+            <%= render 'shared/timelines', posts: @all_posts%>
         </div>
-        <div class="signup-form col-xs-12 col-md-5">
+        <div class="singup-form col-xs-12 col-md-5">
             <h1>Sign UP!!</h1>
             <p>筋トレ管理をはじめましょう</p>
             <%= form_for resource ,as:resource_name, url:new_user_registration_path, class:"hero-form" do |f|%>
@@ -26,8 +23,9 @@
             <%end%>
             <%= link_to "すでに会員のかた", new_user_session_path, class:"btn btn-primary btn-md"%>
         </div>
+    </div>
 </div>
-<div class="row app-introduce">
+<div class="jumbotron app-introduce">
     <h1 class="title col-md-12 col-xs-12">アプリケーションの特徴</h1>
     <div class="row" id="indexmenu">
         <div class="col-lg-4">

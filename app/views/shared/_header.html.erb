@@ -1,15 +1,15 @@
 
     <!-- Nav tabs -->
     <nav class="navbar navbar-expand-lg navbar-light backcolor fixed-top">
-        <a class="navbar-brand" href="#">Muscle Todo!</a>
+        <%= link_to "Muscle Todo!", root_path ,class:"navbar-brand"%>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="nav navbar-nav justify-content-end">
-                <li class="nav-item Active">
-                    <%= link_to "Home", current_user, class:"nav-link"%>
                 <% if user_signed_in? %>
+                    <li class="nav-item Active">
+                        <%= link_to "Home", current_user, class:"nav-link"%>
                     <li class="nav-item">
                         <%= link_to "TimeLine", show_timeline_path(current_user), class:"nav-link"%>
                     </li>
@@ -17,6 +17,8 @@
                         <%= link_to "ログアウト", destroy_user_session_path, class:"nav-link"%>
                     </li>
                 <% else %>
+                    <li class="nav-item Active">
+                        <%= link_to "Home", root_path, class:"nav-link"%>
                     <li class="nav-item">
                         <%= link_to "ログイン",new_user_session_path, class:"nav-link"%>
                     </li>

@@ -1,28 +1,32 @@
 <% provide(title:"ログイン") %>
-<div class="col-md-4 col-sm-8 my-form">
-  <legend>Please Login!!</legend>
-  <em >ログインしてください</em>
-  <%= form_for(resource, as: resource_name, url: new_user_session_path) do |f| %>
-    <div class="field">
-      <%= f.label :email, "Email address" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-item" %>
-    </div>
+<div class="jumbotron jumbotron-fruid" id="hero" style="background-image:url(/assets/sign_in.jpg)">
+  <div class="row">
+      <div class="col-xs-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In!!</h5>
+            <%= form_with model:@user, url: user_session_path, class:"form-signin" do |f|%>
+              <div class="form-label-group">
+                <%= f.email_field :email, autocomplete:"Email address", id:"inputEmail", class:"form-control", required: true, autofocus: true%>
+                <%= f.label :email %>
+              </div>
+              <div class="form-label-group">
+                <%= f.password_field :password, id:"inputPassoword", class:"form-control", autocomplete:"Password", required: true%>
+                <%= f.label :password, "Password"%>
+              </div>
 
-    <div class="field">
-      <%= f.label :password, "Password" %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class:"form-item" %>
-    </div>
+              <div class="custom-control custom-checkbox mb-3">
+                <%= f.label :remember_me, "パスワードを記憶する?"%>
+                <%= f.check_box :remember_me, class:"custom-control-input", id:"customCheck1"%>
+              </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.label :remember_me,"ログイン情報を記録する" %>
-        <%= f.check_box :remember_me %>
+              <%= f.submit "ログイン", class:"btn btn-lg btn-primary btn-block text-uppercase"%>
+              <hr class="my-4">
+              <%= link_to "登録がまだの方はこちら", root_path ,class:"btn btn-lg btn-google btn-block text-uppercase"%>
+              <%= link_to "パスワードを忘れた方", new_user_password_path, class:"btn btn-lg btn-google btn-block text-uppercase"%>
+            <% end %>
+          </div>
+        </div>
       </div>
-    <% end %>
-
-    <div class="actions">
-      <%= f.submit "Log in", class:"btn btn-primary" %>
-    </div>
-  <% end %>
-  <%= render "users/shared/links" %>
+  </div>
 </div>
