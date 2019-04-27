@@ -64,6 +64,14 @@ gem "rails-controller-testing"
 gem 'pry-rails'
 gem 'pry-doc'
 
+# .env
+gem 'dotenv-rails'
+
+# ed25519 setting
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
+
+
 group :production do
     gem  'pg'
     gem  'unicorn', '5.4.1'
@@ -72,6 +80,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', '~> 1.3.6'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :development do

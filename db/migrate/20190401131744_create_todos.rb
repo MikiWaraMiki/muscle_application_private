@@ -1,4 +1,4 @@
-class CreateTodos < ActiveRecord::Migration[5.2]
+git fetch origin mastergit fetch origin masterclass CreateTodos < ActiveRecord::Migration[5.2]
   def change
     create_table :todos do |t|
       t.references :users, foreign_key: true
