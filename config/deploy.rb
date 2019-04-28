@@ -24,10 +24,9 @@ set :deploy_to, "/var/www/rails"
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
+set :linked_files, fetch(:linked_files, []).push('config/master.key', 'config/database.yml')
 
 # append :linked_files, "config/database.yml"
-
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'run/pids', 'run/cache', 'run/sockets', 'vendor/bundle', 'public/system')
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"

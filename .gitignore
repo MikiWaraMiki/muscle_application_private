@@ -21,7 +21,7 @@
 /storage/*
 !/storage/.keep
 
-/node_modules
+/node_modulesa
 /yarn-error.log
 
 /public/assets
@@ -40,5 +40,4 @@
 yarn-debug.log*
 .yarn-integrity
 
-# capistrano setting
-/config/deploy/production.rb
+
