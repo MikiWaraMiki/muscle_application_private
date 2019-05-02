@@ -1,4 +1,5 @@
 <% provide(title: "TimeLines for #{@user.name}")%>
+<div class="row">
 <div class="col-md-6 col-sm-12">
     <h3>Your Time lines!</h3>
     <%= will_paginate @posts,:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'justify-content-center', param_name: "user_timeline_page" %>
@@ -10,4 +11,5 @@
    <%= will_paginate @all_posts,:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'justify-content-center',param_name: "all_user_timeline_page"  %>
    <%= render 'shared/timelines', posts: @all_posts%>
    <%= will_paginate @all_posts,:renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'justify-content-center',param_name: "all_user_timeline_page"  %>
+</div>
 </div>
