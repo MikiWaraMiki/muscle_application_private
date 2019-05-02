@@ -1,7 +1,7 @@
 require 'date'
 class Todo < ApplicationRecord
     belongs_to :user, optional: true
-    has_one :post, foreign_key: "todos_id"
+    has_one :post, foreign_key: "todos_id",  dependent: :destroy
     accepts_nested_attributes_for :post
     validates :title,
         presence: true,

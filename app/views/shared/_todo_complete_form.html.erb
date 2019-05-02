@@ -15,7 +15,7 @@
                     <%= f.label :clear_plan,"完了予定日" %>
                     <%= f.text_field :clear_plan, value: format_date(todo.clear_plan),class:"date-picker ui-widget-content ui-corner-all", disabled: true%>
                     <%= f.label :clear_date, "完了日" %>
-                    <%= f.text_field :clear_date,class:"date-picker ui-widget-content ui-corner-all"%>
+                    <%= f.text_field :clear_date,class:"date-picker ui-widget-content ui-corner-all", id:"date-form#{todo.id}" %>
                     <%= f.label :posted, "Shereしますか?"%>
                     <%= f.check_box :posted, {}, "true", "false"%>
                     <%= f.fields_for :post,  Post.new do |pf| %>

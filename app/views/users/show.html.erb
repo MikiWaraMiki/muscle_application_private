@@ -30,8 +30,9 @@
                         <th><button type="button" class="btn btn-sm btn-primary" id="complete-button" data-toggle="modal" data-target="#modal-timeline-form<%=todo.id%>">完了</button>
                     </tr>
                     <!-- Modal Form-->
+                    <%= render partial:'shared/todo_complete_form', locals:{todo: todo}%>
+                    <!--%= render partial:'shared/todo_complete_form', collection:@user_todo_list, as: :todo%-->
                 <% end%>
-                 <%= render partial:'shared/todo_complete_form', collection:@user_todo_list, as: :todo%>
             </tbody>
         </table>
         </div>
