@@ -35,7 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '~> 1.1.0', require: false
 
 # Bootstrap4
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
