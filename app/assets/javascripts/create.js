@@ -1,17 +1,10 @@
 function set_ajax(){
 
-    function date_format(date_before_format){
-        var year  = date_before_format.getFullYear();
-        var month = date_before_format.getMonth()+1;
-        var day   = date_before_format.getDate
-        ();
-        var format_str = year + "年" + month + "月" + day + "日";
-        return format_str
-    }
+   
 
     function create_complete_form(target_id){
         //ajaxで動的に追加したデータ用の
-        var html = ""
+        var html = "";
     }
     
     $('body').on("ajax:before",'#new-todo' ,function(event){
@@ -47,6 +40,7 @@ function set_ajax(){
     $('body').on("ajax:complete",'#new-todo' ,function(event){
         $("#ui-button").attr("disabled", false);
     });
+    date_format   = 'yy-mm-dd';
     $('#datepicker-create').datepicker({
         dateFormat: date_format,
         minDate: new Date(),

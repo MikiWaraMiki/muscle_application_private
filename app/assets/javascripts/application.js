@@ -10,14 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require jquery
-//= require jquery-ui
+// require jquery-ui
+//= require rails-ujs
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/i18n/datepicker-ja
 //= require popper
 //= require bootstrap-sprockets
 //= require Chart.min
-//= require show_graph.js
 //= require complete.js
 //= require_tree .

@@ -5,7 +5,6 @@ function show_graph(){
         url: '/show_graph',
         dataType: 'JSON',
         success: function(data){
-            console.log(data);
             var context = document.getElementById('chart').getContext('2d');
             var color = [];
             for(var i=0; i < Object.keys(data.datas).length; i++){
@@ -32,6 +31,8 @@ function show_graph(){
         }
 
     })
+    
 }
+
 
 $(document).on('turbolinks:load', show_graph);

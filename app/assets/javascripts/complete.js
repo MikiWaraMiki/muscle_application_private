@@ -79,7 +79,7 @@ function complete_todo(){
     });
 
     date_format   = 'yy-mm-dd';
-    $("[id^='date-formr']").datepicker({
+    $("[id^='date-form']").datepicker({
         dateFormat: date_format,
         minDate: new Date(),
         buttonImageOnly: false
