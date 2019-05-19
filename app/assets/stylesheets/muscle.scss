@@ -7,68 +7,6 @@ body{
 }
 /* Error Mes*/
 
-/* header */
-.fixed-top{
-    background-color: skyblue;
-    .navbar-brand{
-        letter-spacing: 1.1em;
-        font-size: 1.2em;
-        color: white !important;
-    }
-    ul.nav{
-        width:100%;
-        float: right
-    }
-    li.nav-item{
-        margin-right: 20px;
-        font-size: 1.1em;
-        &:hover{
-            color:white !important;
-        }
-    }
-}
-
-/* Side Menu */
-#sidebar-wrapper {
-    min-height: 100vh;
-    margin-left: -15rem;
-    -webkit-transition: margin .25s ease-out;
-    -moz-transition: margin .25s ease-out;
-    -o-transition: margin .25s ease-out;
-    transition: margin .25s ease-out;
-    .sidebar-heading{
-        padding: 0.875rem 1.25rem;
-        font-size: 1.2rem;
-    }
-    .list-group{
-        width: 15rem;
-    }
-    margin-left: 0;
-}
-  
-/* side-bar */
-.wrapper{
-    display: flex;
-    width: 100%;
-}
-.sidebar{
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
-    background: lightblue;
-    color: #fff;
-    transition: all 0.3s;
-    .nav-sidebar{
-        display: inline !important; 
-    }
-    a{
-        color:white;
-        text-decoration: none;
-    }
-}
 
 /* body content */
 #all-body{
@@ -78,16 +16,6 @@ body{
     }
 }
 /* hero content*/
-#hero{
-//    height: 100vh;
-//    width: 100vw;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-    .hero-form{
-        margin: auto;
-    }
-}
 .app-introduce{
     background: #fff;
     #indexmenu{
@@ -138,4 +66,10 @@ body{
 /* Show Page */
 .hide{
     display: none;
+}
+.app-introduce{
+    background:#fff !important;
+    .function{
+        border-bottom: solid 1px skyblue;
+    }
 }

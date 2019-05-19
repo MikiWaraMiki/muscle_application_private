@@ -35,4 +35,3 @@ function show_graph(){
 }
 
 
-$(document).on('turbolinks:load', show_graph);

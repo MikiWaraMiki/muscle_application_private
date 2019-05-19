@@ -1,8 +1,9 @@
 class MuscleController < ApplicationController
-
+    protect_from_forgery
     def index
-        @all_posts = Post.all.limit(2).order('created_at DESC')
-        @user      = User.new
+    end
+
+    def singup
     end
 
     

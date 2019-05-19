@@ -1,49 +1,11 @@
 <% content_for :title do %>
-    Welcome
+    This is Index
 <% end %>
-
-<div class="w-100 row " id="hero" style="background-image:url(/assets/hero.jpg)">
-        <div class="title col-xs-12 col-md-6" >
-            <h1 id="top">Welcome To Muscle Application!!</h1>
-            <p>筋トレに特化したタスク管理と筋トレ記録のシェアに特化したアプリケーションです</p>
-            <p>本日も多くの人が筋トレをシェアしています</p>
-            <div id ="timeline">
-        <%= render 'shared/timelines', posts: @all_posts%>
-            </div>
-        </div>
-        <div class="signup-form col-xs-12 col-md-5">
-            <h1>Sign UP!!</h1>
-            <p>筋トレ管理をはじめましょう</p>
-            <%= form_for @user ,as:resource_name, url:new_user_registration_path, class:"hero-form" do |f|%>
-                <%= render partial:"devise/shared/error_messages" %>
-                <%= f.label :name,"名前"%>
-                <%= f.text_field :name, class:"form-controle"%>
-                <%= f.label :email, "メールアドレス"%>
-                <%= f.email_field :email, class:"form-controle"%>
-                <%= f.label :password, "パスワード"%>
-                <%= f.password_field :password, class:"form-controle"%>
-                <%= f.submit "登録", class:"btn btn-primary btn-md"%>
-            <%end%>
-            <%= link_to "すでに会員のかた", new_user_session_path, class:"btn btn-primary btn-md"%>
-        </div>
-</div>
-<div class="row app-introduce">
-    <h1 class="title col-md-12 col-xs-12">アプリケーションの特徴</h1>
-    <div class="row" id="indexmenu">
-        <div class="col-lg-4">
-        <%= image_tag 'index_menu1.png' %>
-            <h2>筋トレをサポート</h2>
-            <p>筋トレに特化したToDoアプリケーションです。</p>
-        </div>
-        <div class="col-lg-4">
-        <%= image_tag 'index_menu2.png'%>
-            <h2>記録の可視化</h2>
-            <p>行ったトレーニングを可視化します。</p>
-        </div>
-        <div class="col-lg-4">
-        <%= image_tag 'index_menu3.png'%>
-            <h2>記録のシェア</h2>
-            <p>他の人の記録を確認してモチベーションを向上させます</p>
-        </div>
+<div id="app">
+    <navbar></navbar>
+    <div class="content">
+        <router-view></router-view>
     </div>
+    <navbar-footer></navbar-footer>
 </div>
+<%= javascript_pack_tag "muscle"%>
