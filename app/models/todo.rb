@@ -5,7 +5,7 @@ class Todo < ApplicationRecord
     accepts_nested_attributes_for :post
     validates :title,
         presence: true,
-        length: {minimum:1, maximum:100, message:"文字数は1~100に納めてください"},
+        length: {minimum:1, maximum:50, message:"文字数は50文字以下に納めてください"},
         on: :create
     validates :set_count,
         presence:{message: "セット数を入力してください"},
@@ -28,8 +28,10 @@ class Todo < ApplicationRecord
 
     private
     def date_valid?
-        now = Time.now.in_time_zone
-        errors.add(:clear_plan, "過去の日付が入力されています") if clear_plan < now
+        unless clear_plan.blank?
+            now = Time.now.in_time_zone
+            errors.add(:clear_plan, "過去の日付が入力されています") if clear_plan < now
+        end
     end
 
 end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     after_action :discard_flash_if_xhr
     protect_from_forgery
-
+    
     protected
     def configure_permitted_parameters
         added_attrs = [ :email, :user_name, :password, :password_confirmation ]

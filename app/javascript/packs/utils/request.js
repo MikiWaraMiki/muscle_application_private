@@ -18,8 +18,20 @@ export default {
         // authorize parameter set
         if(options.auth){
             //ローカルストレージからトークンを取得(ローカルストレージにAuthenticationTokenで保存されている前提)
-            var authentication_token = localStorage.getItem("AuthenticationToken");
-            var authorization_header = {Authorization: authentication_token};
+            const authentication_token = localStorage.getItem("Token");
+            const authentication_client = localStorage.getItem("Client");
+            const authentication_expiry = localStorage.getItem("Expiry");
+            const authentication_uid = localStorage.getItem("Uid");
+            const authentication_token_type = localStorage.getItem("TokenType");
+            var authorization_header = {
+                "access-token": authentication_token,
+                "client": authentication_client,
+                "expiry": authentication_expiry,
+                "uid": authentication_uid,
+                "token-type": authentication_token_type
+            };
+            
+            console.log(authentication_token)
             //Headerに認証トークンをセット
             headers = Object.assign(headers, authorization_header);
         }

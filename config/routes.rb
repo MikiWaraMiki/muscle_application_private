@@ -4,7 +4,9 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth', controllers:{
         sessions: 'api/auth/sessions'
       }
+      get 'api/user/task' => "api/user#todo_all", as:"user_todo"
       resources :user
+      resources :todo
     end
   end
   root :to =>  "muscle#index"

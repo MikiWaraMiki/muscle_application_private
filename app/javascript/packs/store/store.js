@@ -9,8 +9,13 @@ export default new Vuex.Store({
         loggedIn: false
     },
     mutations: {
-        login(state, token){
-            localStorage.setItem('Token', token);
+        login(state, header){
+            // localstorageに次回操作に必要なheader情報を格納
+            localStorage.setItem('Client', header['client'])
+            localStorage.setItem('Token', header['access-token'])
+            localStorage.setItem('Expiry',header['expiry'])
+            localStorage.setItem('Uid', header['uid'])
+            localStorage.setItem('TokenType',header['token-type'])
             state.loggedIn = true;
         },
         logout(state, token){
@@ -30,7 +35,7 @@ export default new Vuex.Store({
             };
             request.post('/api/v1/auth', options).then( (response) => {
                 // 登録が完了したらトークンを発行
-                commit('login', response.data.token)
+                commit('login', response.headers)
                 payload.router.push('/user')
             }, (error) => {
                 console.log("登録が失敗")
@@ -44,7 +49,7 @@ export default new Vuex.Store({
                 }
             };
             request.post('/api/v1/auth/sign_in', options).then( (response) => {
-                commit('login', response.data.token);
+                commit('login', response.headers);
                 //indexへ遷移
                 payload.router.push('/user');
             }, (error) => {

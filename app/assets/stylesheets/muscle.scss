@@ -4,72 +4,14 @@
 
 body{
     padding-top: 60px;
+    .content{
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    footer {
+        margin-top: auto;
+    }
 }
+
 /* Error Mes*/
-
-
-/* body content */
-#all-body{
-    height: 100%;
-    .sidebar{
-        border: #7386D5 solid 1px;
-    }
-}
-/* hero content*/
-.app-introduce{
-    background: #fff;
-    #indexmenu{
-        margin: 0px auto;
-        text-align: center;
-    }
-    
-}
-
-/*body content*/
-.conteiner-fruid{
-    padding-bottom: 100px;
-}
-.user{
-    height: 50%;
-    width:100%;
-    #title{
-        height: 20% !important;
-        margin-top: 20px;
-    }
-    #table{
-        height: 80% !important;
-    }
-}
-.index{
-    width:100%;
-    padding-right: 0px !important;
-       #top{
-           max-width: 100%;
-           min-width: 100%;
-           position: relative;
-           p{
-               position: absolute;
-           }
-       } 
-}
-
-.page-footer{
-    .container-fluid{
-        background:lightgray;
-    }
-}
-.footer-copyright{
-    background:black;
-    color:white;
-}
-
-/* Show Page */
-.hide{
-    display: none;
-}
-.app-introduce{
-    background:#fff !important;
-    .function{
-        border-bottom: solid 1px skyblue;
-    }
-}
