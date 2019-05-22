@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'api/user/task' => "api/user#todo_all", as:"user_todo"
       resources :user
       resources :todo
+      resources :post
     end
   end
   root :to =>  "muscle#index"

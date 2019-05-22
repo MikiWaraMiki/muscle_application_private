@@ -15,9 +15,6 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="alert alert-info" role="alert" v-if="success_mes">
-                                <p>{{ success_mes }}</p>
-                            </div>
                             <div class="alert alert-danger error_mes" role="alert" v-if="errors.length">
                                 <ul id="error">
                                     <li v-for="(error,index) in errors" :key='index' >{{error}}</li>
@@ -40,6 +37,9 @@
             </div>
         </div>
         <div id="task-table" class="col-sm-12 col-md-12">
+            <div class="alert alert-info" v-if="success_mes">
+                <p>{{ success_mes }}</p>
+            </div>
             <table class='table table-striped' id='todo-table'>
                 <thead>
                     <tr>
@@ -56,10 +56,32 @@
                             <th>{{todo.title}}</th>
                             <th>{{todo.weight}}</th>
                             <th>{{todo.set_count}}</th>
-                            <th><button type="button" class='btn btn-sm btn-primary'>完了</button></th>
+                            <th><button @click="showModalForm($event,todo)" :id="'todo'+todo.id" class="btn-sm btn-primary">完了</button></th>
                     </tr>
                 </tbody>
             </table>
+            <todocompleteform  v-bind:errors="errors" @close="closeModal" v-if="showModal">
+                <template slot='complete_form'>
+                    <div class="alert alert-danger" v-if="errors.length">
+                        <ul>
+                            <li v-for="(error,index) in errors" v-bind:key=index>
+                                {{ error }}
+                            </li>
+                        </ul>
+                    </div>
+                    <h4>{{ completeTodo.title }}</h4>
+                    <p>{{ completeTodo.weight }} Kg</p>
+                    <p> {{ completeTodo.set_count }}セット</p>
+                    <label for="clear-date">完了日</label>
+                    <vuejs-datepicker id="clear_date" :format="dateFomtter" :inline="true"></vuejs-datepicker>
+                    <label for='comment'>コメント</label>
+                    <input type="text" name="comment">
+                </template>
+                <template slot='footer'>
+                    <button @click="closeModal" class="btn-sm btn-primary">閉じる</button>
+                    <button @click="doComplete" class="btn-sm btn-primary">投稿</button>
+                </template>
+            </todocompleteform>
         </div>
         <div id="graph" class="col-sm-12 col-md-12">
             <h3>実施トレーニングの内訳</h3>
@@ -73,10 +95,20 @@ import {mapState, mapActions} from 'vuex'
 import request from '../utils/request.js'
 import PieChart from './PieChart.vue'
 import DatePicker from 'vuejs-datepicker'
+import TodoModalForm from './todocomplete.vue'
+import { constants } from 'crypto';
 export default {
     name: "userIndex",
     data: function(){
         return {
+            completeTodo:{
+                id: '',
+                title:'',
+                weight: '',
+                set_count: '',
+                clear_plan: '',
+                clear_date: '',
+            },
             todo: {
                 title: '',
                 weight: 1,
@@ -97,7 +129,8 @@ export default {
             chartOptions: {
                 responsive: true,
                 maintainAsepecRatio: false,
-            }
+            },
+            showModal: false
         }
     },
     created (){
@@ -126,6 +159,7 @@ export default {
             return `${y}-${m}-${d}`;
         },
         createChartData: function(datas){
+            console.log("create chart data")
             this.chartData.labels = Object.keys(datas);
             for(var value of Object.values(datas)){
                 this.chartData.datasets[0].data.push(value);
@@ -166,7 +200,50 @@ export default {
                 //エラーメッセージを表示
                 this.errors = error.response.data.errors
             })
-        }
+        },
+        showModalForm: function(event,todo){
+            this.completeTodo.id         = todo.id 
+            this.completeTodo.title      = todo.title
+            this.completeTodo.weight     = todo.weight
+            this.completeTodo.set_count  = todo.set_count
+            this.completeTodo.clear_plan = todo.clear_plan
+            this.showModal     = true
+            console.log(this.completeTodo)
+        },
+        closeModal: function(){
+            this.showModal = false;
+        },
+        doComplete: function(){
+            var options = {
+                params:{
+                    post:{
+                        todos_id: this.completeTodo.id,
+                        comment: this.completeTodo.comment
+                    },
+                    todo:{
+                        clear_date: this.completeTodo.clear_date
+                    }
+                },
+                auth: true
+            }
+            // post request
+            request.post('/api/v1/post',options).then( (response) => {
+                // テーブルからデータを削除
+                const id    = this.completeTodo.id;
+                const index = this.todos.findIndex( (v) => v.id === id);
+                this.todos.splice(index,1);
+                this.success_mes = "投稿が完了しました";
+                // modal formを閉じる
+                this.closeModal()
+                /* Todo*/
+                /* Chartjsのデータを更新*/
+                this.getTodo()
+            }, (error) => {
+                //成功メッセージを空にする
+                this.success_mes = "";
+                console.log("error");
+            })
+        },
     },
     filters: {
         date_to_ja: function(str_date){
@@ -179,7 +256,8 @@ export default {
     },
     components: {
         'piechart': PieChart,
-        'vuejs-datepicker': DatePicker
+        'vuejs-datepicker': DatePicker,
+        'todocompleteform': TodoModalForm
     }, 
 }
 </script>

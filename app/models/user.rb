@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
   has_many :todos, foreign_key: 'users_id'
+  has_many :posts, foreign_key: 'users_id'
 end
