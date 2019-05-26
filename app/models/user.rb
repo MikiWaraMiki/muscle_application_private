@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :todos, foreign_key: 'users_id'
   has_many :posts, foreign_key: 'users_id'
+  validates  :name, presence: true, on: :create
 end

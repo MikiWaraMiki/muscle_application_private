@@ -9,7 +9,6 @@ export default {
         if(options.params){
             params = options.params;
         }
-
         // heaeder set
         if(options.header){
             headers = options.header;
@@ -30,8 +29,6 @@ export default {
                 "uid": authentication_uid,
                 "token-type": authentication_token_type
             };
-            
-            console.log(authentication_token)
             //Headerに認証トークンをセット
             headers = Object.assign(headers, authorization_header);
         }
@@ -41,12 +38,21 @@ export default {
         // Added CSRFTokent to Header
         headers['X-CSRF-TOKEN'] = csrf_token;
         // axios生成
-        promise = axios({
-            method: method,
-            url: url,
-            data: params,
-            headers: headers
-        })
+        if(method !== "get"){
+            promise = axios({
+                method: method,
+                url: url,
+                data: params,
+                headers: headers
+            })
+        }else {
+            promise = axios({
+                method: method,
+                url: url,
+                params: params,
+                headers: headers
+            })
+        }
         return promise;
     },
     //各種リクエストメソッドの定義

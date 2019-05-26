@@ -1,7 +1,19 @@
 module Api
     class Api::PostController < ApplicationController
-        before_action :authenticate_api_user!
+        before_action :authenticate_api_user!, except: [:index]
         protect_from_forgery with: :null_session
+
+        PER=5
+
+        def index
+            #全てのtimelineを取得する
+            puts "page is #{params}"
+            posts = Post.all.order("created_at DESC").includes([:user,:todo]).page(params[:page]).per(PER)
+            render json: posts.to_json(:include => [:user, :todo])
+        rescue => error
+            puts error
+            render json: {message: "取得に失敗"},status: 500
+        end
         def create
             post = current_api_user.posts.build(timeline_params)
             post.todo.posted = true

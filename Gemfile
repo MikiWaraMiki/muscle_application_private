@@ -51,16 +51,15 @@ gem 'bcrypt', '~>3.1.7'
 gem 'rails-i18n'
 
 # Pagination
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'kaminari'
+#gem 'will_paginate'
+#gem 'bootstrap-will_paginate'
 
 # Authenticate
 gem "devise"
 gem "devise-i18n"
 gem "devise_token_auth"
 gem "rack-cors"
-# Controler test
-#gem "rails-controller-testing"
 
 # pry
 gem 'pry-rails'

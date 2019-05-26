@@ -1,9 +1,10 @@
 <template>
     <div>
         <div class="col-md-12 col-sm-12 my-3">
-            <h1>Welcome</h1>
+            <h1>Welcome!!</h1>
         </div>
         <div id="modal-form" class="col-sm-12 col-md-12">
+            <h3>ToDo一覧</h3>
             <button class="btn-sm btn-primary my-2 mx-2" data-toggle="modal" data-target="#create-todo-form">登録する</button>
             <div class="modal fade" id="create-todo-form" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
                 <div class="modal-dialog" role="document" >
