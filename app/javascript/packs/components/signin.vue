@@ -37,11 +37,6 @@
         },
         methods: {
             ...mapActions( ['login'] ),
-            onLogOut: function(){
-                this.logout({
-                    router: this.$router
-                })
-            },
             signin: function () {
                 const payload = { 
                     email: this.user.email,

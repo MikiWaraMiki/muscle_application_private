@@ -136,6 +136,7 @@ export default {
     },
     created (){
         this.getTodo()
+        console.log(this.$store.getters['getLoginStatus'])
     },
     methods: {
         getTodo: function (){

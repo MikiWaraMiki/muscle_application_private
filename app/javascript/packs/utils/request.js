@@ -39,6 +39,7 @@ export default {
         headers['X-CSRF-TOKEN'] = csrf_token;
         // axios生成
         if(method !== "get"){
+            console.log(params)
             promise = axios({
                 method: method,
                 url: url,

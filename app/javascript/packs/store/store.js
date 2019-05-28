@@ -3,12 +3,17 @@ import Vuex from 'vuex'
 import request from '../utils/request.js'
 
 Vue.use(Vuex)
-
+const initialState = {
+    loggedIn: false,
+}
+const getters = {
+    getLoginStatus: state=> {
+        return state.loggedIn
+    }
+}
 export default new Vuex.Store({
-    state: {
-        loggedIn: false,
-        user: null,
-    },
+    state: initialState,
+    getters: getters,
     mutations: {
         login(state, header, body){
             // localstorageに次回操作に必要なheader情報を格納
@@ -18,7 +23,6 @@ export default new Vuex.Store({
             localStorage.setItem('Uid', header['uid'])
             localStorage.setItem('TokenType',header['token-type'])
             state.loggedIn = true;
-            console.log(body);
         },
         logout(state, token){
             localStorage.removeItem('Token', token);
