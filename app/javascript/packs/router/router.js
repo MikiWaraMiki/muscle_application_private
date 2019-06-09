@@ -6,6 +6,7 @@ import Timeline from '../components/timeline.vue'
 import Signup from '../components/signup.vue'
 import SignIn from '../components/signin.vue'
 import UserTop from '../components/user_top.vue'
+import UserEdit from '../components/user_edit.vue'
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -16,7 +17,8 @@ export default new VueRouter({
         { path: '/timeline', component: Timeline},
         { path: '/signup', component:Signup},
         { path: '/signin', component:SignIn},
-        { path: '/user', component:UserTop, meta:{ requireAuth: true }}
+        { path: '/user', component:UserTop, meta:{ requireAuth: true }},
+        { path: '/user/edit', component:UserEdit, meta:{ requireAuth: true}}
     ]
 })
 

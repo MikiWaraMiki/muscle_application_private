@@ -17,12 +17,13 @@ module Api
         def create
             post = current_api_user.posts.build(timeline_params)
             post.todo.posted = true
-            post.todo.clear_date = complete_todos
+            post.todo.clear_date = complete_todos[:clear_date]
             post.todo.cleared    = true
             puts post.todo.inspect
             post.todo.save!
             if post.save!
-                render json: {message: "シェアが完了しました", id: post.todo}, status:200
+                @return_json = {todo: post.todo}
+                render json: @return_json, status:200
             end
         rescue => error
             puts error.class

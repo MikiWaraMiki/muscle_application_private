@@ -36,7 +36,7 @@
                     <div  class='row my-2 border-bottom border-dark' v-for="(timeline) in timelines" :key="timeline.id">
                         <div class="col-2">
                             {{ timeline.user.name }}
-                            <div class="button-list" v-if="user!=='' && timeline.user.id !== user.user.id ">
+                            <div class="button-list" v-if=" isLogin && timeline.user.id !== user.user.id">
                                 <button class="btn-sm btn-primary my-2" @click="followAction(timeline.user.id)" v-if="!isFollowing(timeline.user)  ">Follow</button>
                                 <button class="btn-sm btn-info my-2" @click="unFollowAction(timeline.user.id)" v-else>Unfollow</button>
                             </div>
@@ -72,13 +72,15 @@
 <script>
 import request from '../utils/request.js'
 import InfiniteLoading from 'vue-infinite-loading'
-import { mapState } from '../store/store'
+import { mapState } from 'vuex'
+import store from '../store/store'
 import followAction from '../mixins/followaction'
 import followaction from '../mixins/followaction';
 export default {
     components: {
         'infinite-loading': InfiniteLoading
     },
+   
     data: function() {
         return {
             timelines: [],
@@ -104,6 +106,15 @@ export default {
         //ユーザ情報取得の失敗もしくはtokenが付与されていない
         if(token === '' || !login_flg ){
             //Guestユーザの表示
+            this.user = {
+                user: {
+                    id: 0,
+                    name: 'Guest User',
+                },
+                post: 0,
+                followers: [],
+                followings: []
+            }
         }
     },
     mounted() {
@@ -123,6 +134,14 @@ export default {
                 return `${year}/${month}/${day}`
             }
         },
+        isLogin: function(){
+            //ページリロードされた場合も含めたログイン判定
+            const token = localStorage.getItem('Token');
+            if(!this.loggedIn && !token){
+                return false;
+            }
+            return true;
+        }
     },
     methods: {
         isFollowing(target_user){

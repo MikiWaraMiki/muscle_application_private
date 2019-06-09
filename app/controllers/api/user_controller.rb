@@ -9,7 +9,7 @@ module Api
             @todos     = @user.todos
             # グラフ描画用データ
             @complete_todos_groupby = @user.todos.where(cleared:true).group('title').count
-            @return_json_data = {todos: @todos.where(cleared:false), graphdata: @complete_todos_groupby}
+            @return_json_data = {user: @user.name, todos: @todos.where(cleared:false), graphdata: @complete_todos_groupby}
             render :json => @return_json_data
         end
 
@@ -58,8 +58,70 @@ module Api
                 render :json => @return_json_data, status: 422
             end
         end
+        
+        def pie
+            @user = User.includes(:todos).find(current_api_user.id)
+            @complete_todos_groupby = @user.todos.where(cleared:true).group('title').count
+            return_json_data = {graphdata: @complete_todos_groupby}
+            render :json => return_json_data
+        end
+
+        def create_line_data(data_type)
+            user = User.includes(:todos).find(current_api_user.id)
+            graph_array_data = []
+            user.todos.where(cleared: true).each do |todo|
+                index = has_graph_array_data(graph_array_data, todo.title)
+                if index
+                    #同じタイトルのデータがすでに存在する場合
+                    if data_type == "weight"
+                        graph_array_data[index][:data].push({x:format_chart_date(todo.clear_date), y:todo.weight})
+                    elsif data_type == "count"
+                        graph_array_data[index][:data].push({x:format_chart_date(todo.clear_date), y:todo.set_count})
+                    end
+                else
+                    #dataが含まれていない場合
+                    one_data = {
+                        label:  todo.title,
+                        borderColor: createColorCode(),
+                        backgroudColor: "transparent",
+                        data: []
+                    }
+                    if data_type == "weight"
+                        one_data[:data].push({x: format_chart_date(todo.clear_date), y:todo.weight})
+                    elsif data_type == "count"
+                        one_data[:data].push({x: format_chart_date(todo.clear_date), y:todo.set_count})
+                    end
+                    graph_array_data.push(one_data)
+                    puts "array is #{graph_array_data}"
+                end
+            end
+            graph_array_data
+        end
+        def line_weight
+            @graph_data = create_line_data("weight")
+            render :json => {graphdata: @graph_data}, status: 200 
+        end
+        
+        def line_count
+            @graph_data = create_line_data("count")
+            render :json => {graphdata: @graph_data}, status:200
+        end
 
         private
+        def createColorCode
+            r,g,b = Random.rand(0 .. 255), Random.rand(10 .. 245), Random.rand(20 .. 235)
+            "rgba(#{r},#{g},#{b},1)"
+        end
+        def has_graph_array_data(array_data, title)
+            if array_data.length > 0
+                target_obejct = array_data.find {|item|
+                    item[:label] == title
+                }
+                array_data.index(target_obejct) 
+            else
+                false
+            end
+        end
         def show_current_user
             #ログインしているユーザ情報
             @user     = current_api_user
@@ -70,5 +132,10 @@ module Api
         def follow_user_params
             params.require(:user).permit(:user_id)
         end
+
+        def format_chart_date(non_format_date)
+            "#{non_format_date.year}-#{non_format_date.month}-#{non_format_date.day}"
+        end
+
     end
 end

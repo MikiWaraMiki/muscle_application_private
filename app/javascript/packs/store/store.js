@@ -25,7 +25,7 @@ export default new Vuex.Store({
             state.loggedIn = true;
         },
         logout(state, token){
-            localStorage.removeItem('Token', token);
+            localStorage.clear()
             state.loggedIn = false;
         }
     },
@@ -62,14 +62,14 @@ export default new Vuex.Store({
                 console.log("ログインに失敗");
             });
         },
-        logout( {commit}, payalod){
-            request.delete('/api/v1/auth/logout', { auth: true}).then( (response) => {
+        logout( {commit}, payload){
+            request.delete('/api/v1/auth/sign_out', { auth: true}).then( (response) => {
                 commit('logout');
+                 // indexへリダイレクト
+                payload.router.push('/')
             }, (error) => {
                 console.log("ログアウトに失敗");
             });
-            // indexへリダイレクト
-            location.href("/");
         }
     }
 

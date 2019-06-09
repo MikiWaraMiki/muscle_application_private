@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       }
       post 'user/follow' => "user#follow"
       delete 'user/unfollow' => "user#unfollow"
+      get 'user/graph/pie' => "user#pie"
+      get 'user/graph/lineweight' => "user#line_weight"
+      get 'user/graph/linecount' => "user#line_count"
       resources :user
       resources :todo
       resources :post
@@ -17,4 +20,5 @@ Rails.application.routes.draw do
   get 'signup'  => "muscle#index"
   get 'signin'  => "muscle#index"
   get 'user'    => "muscle#index"
+  get 'user/edit' => "muscle#index"
 end
